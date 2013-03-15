@@ -1,0 +1,13 @@
+#!/usr/bin/env bats
+
+@test "the log dir (<%= node.example.log_dir %>) should be owned by our user (<%= node.example.user %>)" {
+  [ "$(stat -c %U <%= node.example.log_dir %>| grep <%= node.example.user %>)" ]
+}
+
+@test "should create the log dir (<%= node.example.log_dir %>)" {
+  [ -d <%= node.example.log_dir %> ]
+  }
+
+@test "the configuration file should have the right password" {
+  [ "$(grep '<%= node.example.password %>' /tmp/example.conf )" ]
+}
